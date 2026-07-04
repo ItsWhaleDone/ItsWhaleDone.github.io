@@ -36,7 +36,7 @@ function showToast(html) {
 }
 
 // Discord tag copy-to-clipboard
-const DISCORD_TAG = 'whaledone';
+const DISCORD_TAG = 'whaledone.';
 document.getElementById('discord-btn').addEventListener('click', async () => {
   try {
     await navigator.clipboard.writeText(DISCORD_TAG);
