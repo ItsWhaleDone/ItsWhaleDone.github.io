@@ -1,34 +1,144 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Votre Nom</title>
-<meta name="description" content="Page personnelle">
+<title>WhaleDone</title>
+<meta name="description" content="WhaleDone — links, music, and a few frozen moments.">
+
+<!-- favicon: simple frosted "W" mark -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230a1420'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='30' fill='%237ee3f5' text-anchor='middle'%3EW%3C/text%3E%3C/svg%3E">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Poppins:wght@600;700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
- 
-  <div class="bg-layer" aria-hidden="true"></div>
-  <div class="vignette" aria-hidden="true"></div>
- 
-  <main class="card">
-    <span class="spark" aria-hidden="true">✦</span>
- 
-    <h1 class="name">&nbsp;Nom</h1>
-    <p class="tagline">ce que je fais, en une ligne</p>
- 
-    <div class="rule"></div>
- 
-    <nav class="links">
-      <a href="mailto:vous@example.com">Email</a>
-      <a href="https://github.com/votre-pseudo" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://x.com/votre-pseudo" target="_blank" rel="noopener">X</a>
-    </nav>
-  </main>
- 
+
+<!-- ambient snow layer -->
+<div class="snow" id="snow" aria-hidden="true"></div>
+
+<!-- background video -->
+<video class="bg-video" autoplay muted loop playsinline preload="auto">
+  <source src="assets/background.mp4" type="video/mp4">
+</video>
+<div class="bg-overlay" aria-hidden="true"></div>
+<div class="bg-noise" aria-hidden="true"></div>
+<div class="hero-glow" aria-hidden="true"></div>
+
+<main class="stage">
+
+  <p class="tagline">. ... - / -.-. . / ... .. / ...- .. - .- .-.. / -.. .----. . - .-. . / ... .--. . -.-. .. .- .-.. / ..--..</p>
+
+  <section class="terminal" aria-label="Terminal">
+    <div class="term-bar">
+      <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+      <span class="term-title">root@whaledone:~</span>
+    </div>
+    <div class="term-body" id="term-body">
+      <div class="term-output" id="term-output"></div>
+      <div class="term-input-row">
+        <span class="term-prompt">root@whaledone:~$</span>
+        <span class="term-typed" id="term-typed"></span><span class="term-cursor" id="term-cursor"></span>
+        <input type="text" id="term-input" class="term-input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="Terminal input">
+      </div>
+    </div>
+  </section>
+
+  <section class="links" aria-label="Find me">
+    <span class="eyebrow">find me</span>
+    <div class="icon-row">
+
+      <button class="icon-btn" id="discord-btn" data-label="Discord" type="button">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M8.5 9.5c1.5 1 2 1.2 3.5 1.2s2-.2 3.5-1.2M9 15.2c1 .5 2 .7 3 .7s2-.2 3-.7M7 6.8C9 6 10.6 5.6 12 5.6s3 .4 5 1.2c1.4 2 2.2 4.7 2.4 8.1-1.3 1.3-3 2.1-4.7 2.5l-.7-1.4M7 6.8C5.6 8.8 4.8 11.5 4.6 14.9c1.3 1.3 3 2.1 4.7 2.5l.7-1.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9.2" cy="12.2" r="1.1" fill="currentColor"/><circle cx="14.8" cy="12.2" r="1.1" fill="currentColor"/></svg>
+        <span class="icon-label">Discord</span>
+      </button>
+
+      <button class="icon-btn" id="instagram-btn" data-label="Instagram" type="button">
+        <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="5" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="12" r="3.6" stroke="currentColor" stroke-width="1.4"/><circle cx="16.2" cy="7.8" r="1" fill="currentColor"/></svg>
+        <span class="icon-label">Instagram</span>
+        <span class="soon-dot" aria-hidden="true"></span>
+      </button>
+
+      <button class="icon-btn" id="ebay-btn" data-label="eBay" type="button">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 9h3.2a2.4 2.4 0 1 1 0 4.8H4V9Z" stroke="currentColor" stroke-width="1.3"/><path d="M11.5 13.8a2.8 2.8 0 1 0 0-3.6M11.5 12h3.6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M17 9v4.8M17 9h2.4a1.8 1.8 0 0 1 0 3.6H17" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="icon-label">eBay</span>
+        <span class="soon-dot" aria-hidden="true"></span>
+      </button>
+
+      <a class="icon-btn" id="steam-btn" href="https://steamcommunity.com/id/IfYouKnowMeYouKnowMeBro/" target="_blank" rel="noopener noreferrer" data-label="Steam">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.3"/><circle cx="9.5" cy="14.5" r="1.6" stroke="currentColor" stroke-width="1.2"/><circle cx="14.5" cy="10.5" r="2.1" stroke="currentColor" stroke-width="1.2"/><path d="M11 14 13 12.2" stroke="currentColor" stroke-width="1.2"/></svg>
+        <span class="icon-label">Steam</span>
+      </a>
+
+      <button class="icon-btn" id="site-btn" data-label="Website" type="button">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.3"/><path d="M3.7 12h16.6M12 3.7c2.2 2.3 3.3 5.2 3.3 8.3s-1.1 6-3.3 8.3c-2.2-2.3-3.3-5.2-3.3-8.3s1.1-6 3.3-8.3Z" stroke="currentColor" stroke-width="1.2"/></svg>
+        <span class="icon-label">Website</span>
+        <span class="soon-dot" aria-hidden="true"></span>
+      </button>
+
+    </div>
+  </section>
+
+  <section class="panel" aria-label="Now playing">
+    <span class="eyebrow">on repeat</span>
+    <div class="now-playing">
+      <div class="track-cover-large">
+        <img src="assets/PNL.jpg" alt="PNL">
+      </div>
+      <div class="player audio-player">
+        <div class="audio-top">
+          <button class="play-btn" id="play-btn" type="button" aria-label="Play">
+            <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.14v13.72c0 .8.87 1.3 1.57.87l10.94-6.86c.66-.42.66-1.38 0-1.8L9.57 4.27C8.87 3.84 8 4.34 8 5.14Z"/></svg>
+            <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" hidden><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>
+          </button>
+          <div class="track-meta">
+            <span class="track-artist">PNL</span>
+            <span class="track-title">La Misère Est Si Belle</span>
+          </div>
+        </div>
+        <div class="waveform" id="waveform"></div>
+        <div class="track-time">
+          <span id="time-current">0:00</span>
+          <span id="time-total">0:00</span>
+        </div>
+        <audio id="audio-player" src="assets/musique.mp3" preload="metadata" loop></audio>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <span>© <span id="year"></span> WhaleDone</span>
+  </footer>
+
+</main>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<aside class="footer-card">
+  <!-- signature: avatar wrapped in a slow-turning crystal ring -->
+  <div class="portrait-small">
+    <svg class="ring" viewBox="0 0 200 200" aria-hidden="true">
+      <circle cx="100" cy="100" r="96" class="ring-track"/>
+      <circle cx="100" cy="100" r="96" class="ring-tick"/>
+    </svg>
+    <div class="avatar">
+      <img src="assets/avatar.jpg" alt="WhaleDone's avatar">
+    </div>
+  </div>
+
+  <div class="footer-content">
+    <h2 class="footer-name">WhaleDone</h2>
+    <div class="footer-divider"></div>
+    <div class="footer-text-links">
+      <button class="footer-text-btn" id="email-btn" type="button">EMAIL</button>
+      <button class="footer-text-btn" id="github-btn-text" type="button">GITHUB</button>
+    </div>
+  </div>
+</aside>
+
+<script src="script.js"></script>
 </body>
 </html>
